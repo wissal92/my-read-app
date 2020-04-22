@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import BookShelf from './component/BookShelf';
+import BookShelf from '../components/BookShelf';
 
 class Library extends Component{
 
