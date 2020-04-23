@@ -11,7 +11,7 @@ class BookSearch extends Component {
     }
 
     spinner = () => {
-      return <Loader type="Rings" color="#c74940" height={100} width={100} timeout={3000}/>
+      return <Loader type="Rings" color="#c74940" height={100} width={100} timeout={3000} />
     }
 
     handleChange = async e =>{
@@ -21,7 +21,7 @@ class BookSearch extends Component {
           if(query){
              this.spinner()
           }
-          
+
           this.setState({query});
 
           if(query.trim()){
