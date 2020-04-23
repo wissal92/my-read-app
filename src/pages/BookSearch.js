@@ -1,4 +1,5 @@
 import React, { Component} from 'react';
+import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
 import {search} from '../BooksAPI';
 import Book from '../components/Book';
@@ -9,15 +10,24 @@ class BookSearch extends Component {
         this.state = {query: '', books: []};
     }
 
+    spinner = () => {
+      return <Loader type="Rings" color="#c74940" height={100} width={100} timeout={3000}/>
+    }
+
     handleChange = async e =>{
       try{
           const query = e.target.value;
+
+          if(query){
+             this.spinner()
+          }
+          
           this.setState({query});
 
           if(query.trim()){
       
-           const searchResults = await search(query);
-
+            const searchResults = await search(query);
+    
             if(searchResults.error){
               this.setState({books: []})
             } else {
@@ -52,7 +62,8 @@ class BookSearch extends Component {
                     }
 
                     return <Book key={book.id} book={book} moveBook={this.props.moveBook}/>
-                  }) : (<h1>No results</h1>)}
+                   }) : (<h1>No Results</h1>)
+                  }
                 </ol>
               </div>
             </div>
