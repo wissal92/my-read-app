@@ -1,15 +1,13 @@
 import React from 'react';
 import {update} from '../BooksAPI';
 
-const Book = ({book}) => {
+const Book = ({book, moveBook}) => {
 
     const handleChange = async (e) =>{
         try {
             const shelf = e.target.value;
-            const {book} = this.props;
-
-           const updatePlacement = await update(book, shelf);
-           this.props.moveBook(book, shelf, updatePlacement)
+            const updatePlacement = await update(book, shelf);
+            moveBook(shelf, updatePlacement)
         } catch(err) {
             console.log(err)
         }

@@ -16,7 +16,21 @@ export default class BookProvider extends Component{
                const read = books.filter(book => book.shelf === 'read');
                this.setState({books, currentlyReading, wantToRead, read});
            },
+           moveBook: (newShelf, updatePlacement) =>{
+               const newPlacement = this.state.books.map(book =>{
+                const id = updatePlacement[newShelf].find(bookId => bookId === book.id);
+
+                if(id){
+                    book.shelf = newShelf;
+                 }
+
+                 return book;
+            });
+
+            this.state.organizeBooks(newPlacement);
+        }
        }
+
    }
 
    render(){
